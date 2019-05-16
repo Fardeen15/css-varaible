@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        :root{
+            --Base: #ffC600;
+            --spacing:10px;
+            --blur:10px;
+        }
+    body{
+        text-align: center;
+        font-size: 50px;
+        font-weight: 100;
+        background-color: lightgray;
+    }
+    img{
+        height: 600px;
+        width: 70%;
+        margin-top: 25px;
+        padding: var(--spacing);
+        background: var(--Base);
+        filter: blur(var(--blur));
+    }
+    .h1{
+        color: var(--Base);
+    }
+
+    </style>
+</head>
+<body>
+    <h1>Update CSS variable with <span class="h1">JS</span></h1>
+    <div>
+        <label for="spacing">Spacing</label>
+        <input type="range" name="spacing" min="0" max="200" value="10" data-sizing="px">
+
+        <label for="blur">Blur</label>
+        <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+        <label for="Base">Color</label>
+        <input type="color" name="Base"  value = "#ffC600" >
+    </div>
+    <img src="amplifi-contact-us-2.jpg" alt="">
+</body>
+<script>
+ var input = document.querySelectorAll("input");
+
+ function handelUpdate(){
+     var update = this.dataset.sizing || "";
+     document.documentElement.style.setProperty(`--${this.name}`,this.value + update)
+ }
+ input.forEach(input =>input.addEventListener("change",handelUpdate));
+ input.forEach(input =>input.addEventListener("mousemove",handelUpdate));
+
+</script>
+</html>
